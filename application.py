@@ -1,11 +1,6 @@
 import sqlite3
 
-# Initialize database connection and create tables
 def initialize_database():
-    """
-    Connect to SQLite database and create necessary tables
-    for flavors, ingredients, allergens, and cart.
-    """
     conn = sqlite3.connect("ice_cream_parlor.db")
     cursor = conn.cursor()
     
@@ -28,7 +23,6 @@ def initialize_database():
     return conn
 
 def add_flavor(conn, name, season):
-    """Add a new flavor to the flavors table."""
     try:
         conn.execute("INSERT INTO flavors (name, season) VALUES (?, ?)", (name, season))
         conn.commit()
@@ -37,7 +31,6 @@ def add_flavor(conn, name, season):
         print("Flavor already exists!")
 
 def add_ingredient(conn, name, stock):
-    """Add a new ingredient to the ingredients table."""
     try:
         conn.execute("INSERT INTO ingredients (name, stock) VALUES (?, ?)", (name, stock))
         conn.commit()
@@ -46,7 +39,6 @@ def add_ingredient(conn, name, stock):
         print("Ingredient already exists!")
 
 def add_allergen(conn, name):
-    """Add a new allergen to the allergens table."""
     try:
         conn.execute("INSERT INTO allergens (name) VALUES (?)", (name,))
         conn.commit()
@@ -55,7 +47,6 @@ def add_allergen(conn, name):
         print("Allergen already exists!")
 
 def search_flavors(conn, keyword):
-    """Search for flavors by name or season."""
     cursor = conn.execute("SELECT * FROM flavors WHERE name LIKE ?", (f"%{keyword}%",))
     results = cursor.fetchall()
     if results:
@@ -65,7 +56,6 @@ def search_flavors(conn, keyword):
         print("No matching flavors found.")
 
 def add_to_cart(conn, flavor_name):
-    """Add a flavor to the cart."""
     try:
         conn.execute("INSERT INTO cart (flavor_name) VALUES (?)", (flavor_name,))
         conn.commit()
@@ -74,7 +64,6 @@ def add_to_cart(conn, flavor_name):
         print("Error adding to cart. Flavor might not exist.")
 
 def view_cart(conn):
-    """View all items in the cart."""
     cursor = conn.execute("SELECT * FROM cart")
     items = cursor.fetchall()
     if items:
@@ -85,7 +74,6 @@ def view_cart(conn):
         print("Cart is empty.")
 
 def main():
-    """Main function to handle user inputs."""
     conn = initialize_database()
 
     while True:
