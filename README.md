@@ -21,6 +21,11 @@ A Python-based application that uses SQLite to manage:
 ## How to Run the Application
 
 ### **Step 1: Clone the Repository**
-```bash
-git clone https://github.com/<your-username>/ice-cream-parlor.git
+git clone https://github.com/Pooja160701/ice-cream-parlor.git
 cd ice-cream-parlor
+
+## **Step 2: Install Dependencies**
+Ensure Python 3.x is installed on your system.
+
+## **Step 3: Run the Application**
+python ice_cream_parlor.py
